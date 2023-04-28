@@ -1,27 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Title } from './components'
+import { Form, Title } from './components'
 
 const App = () => {
 	return (
 		<div className='container'>
 			<Title />
 			<Wrapper>
-				<form>
-					<div className='formGroup'>
-						<label htmlFor='day'>Day</label>
-						<input type='number' placeholder='24' name='day' />
-					</div>
-					<div className='formGroup'>
-						<label htmlFor='month'>Month</label>
-						<input type='number' placeholder='09' name='month' />
-					</div>
-					<div className='formGroup'>
-						<label htmlFor='year'>Year</label>
-						<input type='number' placeholder='1984' name='year' />
-					</div>
-				</form>
-				<button className='separator'>
+        <Form />
+				<button className='submit'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						width='46'

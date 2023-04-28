@@ -1,3 +1,5 @@
-import Title from './Title'
+import Title from './Title';
+import Form from './Form';
+import FormInput from './FormInput';
 
-export { Title }
+export { Title,Form ,FormInput }
