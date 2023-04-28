@@ -33,6 +33,9 @@ html{
 
   .container{
     width:min(320px, 1440px);
+    padding-inline: 1rem;
+    display: grid;
+    place-items: center;
   }
 
 `
