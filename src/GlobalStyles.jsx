@@ -23,7 +23,6 @@ html{
 
   .container{
     width:min(320px, 1440px);
-    padding:5rem 1rem;
   }
 
 `
