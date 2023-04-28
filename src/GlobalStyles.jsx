@@ -5,14 +5,27 @@ const GlobalStyles = createGlobalStyle`
 
   }
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+html{
+  font-size:100%
+}
   body{
-    margin: 0;
-    padding: 0;
+    font-family: 'Poppins', sans-serif;
     display:grid;
     place-items: center;
     min-height: 100vh;
   }
-`
 
+  .container{
+    width:min(320px, 1440px);
+    padding:5rem 1rem;
+  }
+
+`
 
 export default GlobalStyles
