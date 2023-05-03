@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { inputs } from '../data/Data'
 import { FormInput } from './index'
-const initialState = {
-	day: '',
-	month: '',
-	year: '',
-}
+import moment from 'moment'
+
 const Form = () => {
-	const [birthDate, setBirthDate] = useState(initialState)
+	const [birthDate, setBirthDate] = useState({ day: '', month: '', year: '' })
+	const [birthDates, setBirthDates] = useState([])
 	const [error, setError] = useState(false)
 
 	const handleChange = (e) => {
@@ -18,13 +16,14 @@ const Form = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		if (!birthDate.value) {
+		if (!birthDate.day || !birthDate.month || !birthDate.year) {
 			setError(true)
 			console.log('cannot be blank')
 		} else {
 			setError(false)
-			console.log(birthDate)
-			setBirthDate(initialState)
+			const newBirthDate = { ...birthDate, id: new Date().getTime() }
+			setBirthDates([...birthDates, newBirthDate])
+			setBirthDate({ day: '', month: '', year: '' })
 		}
 	}
 	return (
@@ -52,6 +51,18 @@ const Form = () => {
 					</svg>
 				</button>
 			</form>
+
+			{birthDates.map((birthDate) => {
+				const { day, month, year, id } = birthDate
+
+				return (
+					<div key={id}>
+						<h2>{year} years</h2>
+						<h2>{month} months</h2>
+						<h2>{day} days</h2>
+					</div>
+				)
+			})}
 		</>
 	)
 }
