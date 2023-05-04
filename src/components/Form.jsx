@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import { inputs } from '../data/Data'
 import { FormInput } from './index'
-import moment from 'moment'
+import {
+	differenceInYears,
+	differenceInMonths,
+	differenceInDays,
+} from 'date-fns'
 
 const Form = () => {
 	const [birthDate, setBirthDate] = useState({ day: '', month: '', year: '' })
@@ -54,12 +58,18 @@ const Form = () => {
 
 			{birthDates.map((birthDate) => {
 				const { day, month, year, id } = birthDate
+				const dob = `${year} , ${month} ,${day}`
+				const ageYrs = differenceInYears(new Date(), new Date(year))
+				const ageMnths = differenceInMonths(new Date(), new Date(month))
+				const ageDays = differenceInYears(new Date(), new Date(dob))
+				const d = new Date()
+				console.log(ageYrs,ageMnths,ageDays,dob,d )
 
 				return (
 					<div key={id}>
-						<h2>{year} years</h2>
-						<h2>{month} months</h2>
-						<h2>{day} days</h2>
+						<h2>{ageYrs} years</h2>
+						<h2>{ageMnths} months</h2>
+						<h2>{ageDays} days</h2>
 					</div>
 				)
 			})}
