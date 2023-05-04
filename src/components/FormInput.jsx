@@ -5,8 +5,8 @@ const FormInput = ({
 	placeholder,
 	name,
 	type,
-	minLength,
-	maxLength,
+	min,
+	max,
 	birthDate,
 	handleChange,
 }) => {
@@ -17,8 +17,8 @@ const FormInput = ({
 				type={type}
 				placeholder={placeholder}
 				name={name}
-				minLength={minLength}
-				maxLength={maxLength}
+				min={min}
+				max={max}
 				value={birthDate.value}
 				onChange={handleChange}
 			/>
