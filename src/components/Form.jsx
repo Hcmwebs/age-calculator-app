@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { inputs } from '../data/Data'
 import { FormInput } from './index'
 import {
+	format,
 	differenceInYears,
 	differenceInMonths,
 	differenceInDays,
@@ -57,13 +58,20 @@ const Form = () => {
 			</form>
 
 			{birthDates.map((birthDate) => {
+				const diff = (a, b) => a - b
+
 				const { day, month, year, id } = birthDate
-				const dob = `${year} , ${month} ,${day}`
-				const ageYrs = differenceInYears(new Date(), new Date(year))
-				const ageMnths = differenceInMonths(new Date(), new Date(month))
-				const ageDays = differenceInYears(new Date(), new Date(dob))
-				const d = new Date()
-				console.log(ageYrs,ageMnths,ageDays,dob,d )
+				const dob = new Date(year, month, day)
+
+				const ageYrs = differenceInYears(new Date(), new Date(dob))
+				const ageMnths = differenceInMonths(
+					new Date(),
+					new Date(year, month - 1 , 31 )
+				)
+				const ageDays = differenceInDays(
+					new Date(year, month, 31),
+					new Date(dob)
+				)
 
 				return (
 					<div key={id}>
