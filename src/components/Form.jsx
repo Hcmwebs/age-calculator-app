@@ -1,15 +1,10 @@
 import React, { useState } from 'react'
 import { inputs } from '../data/Data'
 import { FormInput } from './index'
-import {
-	format,
-	differenceInYears,
-	differenceInMonths,
-	differenceInDays,
-} from 'date-fns'
+// import uniqid from 'uniqid'
 
 const Form = () => {
-	const [birthDate, setBirthDate] = useState({ day: '', month: '', year: '' })
+	const [birthDate, setBirthDate] = useState({ day:'', month: '', year: ''})
 	const [birthDates, setBirthDates] = useState([])
 	const [error, setError] = useState(false)
 
@@ -26,9 +21,12 @@ const Form = () => {
 			console.log('cannot be blank')
 		} else {
 			setError(false)
-			const newBirthDate = { ...birthDate, id: new Date().getTime() }
-			setBirthDates([...birthDates, newBirthDate])
-			setBirthDate({ day: '', month: '', year: '' })
+			const newId = new Date().getTime().toString()
+			const newBirthDate = { ...birthDate, id: newId }
+			const updatedBirthDates = [...birthDates, newBirthDate]
+			setBirthDates(updatedBirthDates)
+			setBirthDate({ day:'', month: '', year: '' })
+			console.log(birthDate)
 		}
 	}
 	return (
@@ -58,20 +56,13 @@ const Form = () => {
 			</form>
 
 			{birthDates.map((birthDate) => {
-				const diff = (a, b) => a - b
+				const diff = (a, b) => Math.abs(a - b)
 
 				const { day, month, year, id } = birthDate
-				const dob = new Date(year, month, day)
 
-				const ageYrs = differenceInYears(new Date(), new Date(dob))
-				const ageMnths = differenceInMonths(
-					new Date(),
-					new Date(year, month - 1 , 31 )
-				)
-				const ageDays = differenceInDays(
-					new Date(year, month, 31),
-					new Date(dob)
-				)
+				const ageYrs = diff(new Date().getFullYear(), year)
+				const ageMnths = diff(new Date().getMonth(), month - 1)
+				const ageDays = diff(new Date().getDate(), day)
 
 				return (
 					<div key={id}>
