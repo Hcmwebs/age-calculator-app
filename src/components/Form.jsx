@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
-import { inputs } from '../data/Data'
+import { inputs, months } from '../data/Data'
 import { FormInput } from './index'
 // import uniqid from 'uniqid'
-
+months
 const Form = () => {
-	const [birthDate, setBirthDate] = useState({ day:'', month: '', year: ''})
+	const [birthDate, setBirthDate] = useState({ day: '', month: '', year: '' })
 	const [birthDates, setBirthDates] = useState([])
 	const [error, setError] = useState(false)
+	const [months, setMonths] = useState(months)
 
 	const handleChange = (e) => {
 		const value = e.target.value
@@ -25,7 +26,7 @@ const Form = () => {
 			const newBirthDate = { ...birthDate, id: newId }
 			const updatedBirthDates = [...birthDates, newBirthDate]
 			setBirthDates(updatedBirthDates)
-			setBirthDate({ day:'', month: '', year: '' })
+			setBirthDate({ day: '', month: '', year: '' })
 			console.log(birthDate)
 		}
 	}
@@ -56,9 +57,33 @@ const Form = () => {
 			</form>
 
 			{birthDates.map((birthDate) => {
-				const diff = (a, b) => Math.abs(a - b)
-
 				const { day, month, year, id } = birthDate
+				const dob = new Date(year, month, day)
+
+				const diff = (a, b) => a - b
+				const isLeapYear =  (year) => {
+					if(year % 4 === 0 || year % 100 === 0 || year % 400 === 0){
+						months[1] = 29
+					}else{
+						months[1] = 28
+					}
+
+					console.log(year , months[1]);
+				}
+				const calculateAge = () => {
+					const today = new Date()
+					const bDate = new Date(dob)
+
+					const currentYr = today.getFullYear()
+					const currentMnth = today.getMonth() + 1
+					const currentDay = today.getDate()
+
+					isLeapYear(currentYr)
+
+					if () {
+						
+					}
+				}
 
 				const ageYrs = diff(new Date().getFullYear(), year)
 				const ageMnths = diff(new Date().getMonth(), month - 1)
@@ -67,7 +92,7 @@ const Form = () => {
 				return (
 					<div key={id}>
 						<h2>{ageYrs} years</h2>
-						<h2>{ageMnths} months</h2>
+						<h2>{ageMnths} months </h2>
 						<h2>{ageDays} days</h2>
 					</div>
 				)
