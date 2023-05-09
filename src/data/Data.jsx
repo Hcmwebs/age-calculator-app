@@ -24,6 +24,6 @@ const inputs = [
 		max: new Date().getFullYear().toString(),
 	},
 ]
-const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-export { inputs,months }
+
+export { inputs }
