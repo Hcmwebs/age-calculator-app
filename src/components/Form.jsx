@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
-import { inputs, months } from '../data/Data'
+import { inputs } from '../data/Data'
 import { FormInput } from './index'
 // import uniqid from 'uniqid'
-months
 const Form = () => {
 	const [birthDate, setBirthDate] = useState({ day: '', month: '', year: '' })
 	const [birthDates, setBirthDates] = useState([])
 	const [error, setError] = useState(false)
-	const [months, setMonths] = useState(months)
+	const mnths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+	const today = new Date()
+
+	const currentYr = today.getFullYear()
+	const currentMnth = today.getMonth() + 1
+	const currentDay = today.getDate()
+
+
 
 	const handleChange = (e) => {
 		const value = e.target.value
@@ -27,7 +33,6 @@ const Form = () => {
 			const updatedBirthDates = [...birthDates, newBirthDate]
 			setBirthDates(updatedBirthDates)
 			setBirthDate({ day: '', month: '', year: '' })
-			console.log(birthDate)
 		}
 	}
 	return (
@@ -57,43 +62,60 @@ const Form = () => {
 			</form>
 
 			{birthDates.map((birthDate) => {
-				const { day, month, year, id } = birthDate
-				const dob = new Date(year, month, day)
+				let { day, month, year, id } = birthDate
 
-				const diff = (a, b) => a - b
-				const isLeapYear =  (year) => {
-					if(year % 4 === 0 || year % 100 === 0 || year % 400 === 0){
-						months[1] = 29
-					}else{
-						months[1] = 28
+				const diff = (a, b) => Math.abs(a - b)
+				const isLeapYear = (year) => {
+					if (year % 4 === 0 || year % 100 === 0 || year % 400 === 0) {
+						mnths[1] = 29
+					} else {
+						mnths[1] = 28
 					}
-
-					console.log(year , months[1]);
 				}
 				const calculateAge = () => {
-					const today = new Date()
-					const bDate = new Date(dob)
-
-					const currentYr = today.getFullYear()
-					const currentMnth = today.getMonth() + 1
-					const currentDay = today.getDate()
 
 					isLeapYear(currentYr)
 
-					if () {
-						
+					if (
+						year > currentYr ||
+						(month > currentMnth && year === currentYr) ||
+						(day > currentDay && month === currentMnth && year === currentYr)
+					) {
+						setError(true)
+						alert('Sorry! You are still unborn. Please, be patient')
+						return
 					}
-				}
 
-				const ageYrs = diff(new Date().getFullYear(), year)
-				const ageMnths = diff(new Date().getMonth(), month - 1)
-				const ageDays = diff(new Date().getDate(), day)
+					year = currentYr - year
+					if (currentMnth >= month) {
+						month = currentMnth - month
+					} else {
+						year--
+						month = 12 + currentMnth - month
+					}
+
+					if (currentDay >= day) {
+						day = currentDay - day
+					} else {
+						month--
+						let days = mnths[currentMnth - 2]
+						day = days + currentDay - day
+						if (month === 0) {
+							month = 11
+							year--
+						}
+					}
+					console.log(year, month , day);
+				}
+				calculateAge()
+				// const ageMnths = diff(new Date().getMonth(), month - 1)
+				// const ageDays = diff(new Date().getDate(), day)
 
 				return (
 					<div key={id}>
-						<h2>{ageYrs} years</h2>
-						<h2>{ageMnths} months </h2>
-						<h2>{ageDays} days</h2>
+						<h2>{year} years</h2>
+						<h2>{month} months </h2>
+						<h2>{day} days</h2>
 					</div>
 				)
 			})}
