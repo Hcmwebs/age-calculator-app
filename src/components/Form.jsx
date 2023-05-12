@@ -63,13 +63,41 @@ const Form = () => {
 
 			{birthDates.map((birthDate) => {
 				let { day, month, year, id } = birthDate
-
-				const diff = (a, b) => Math.abs(a - b)
+				const diff = (a, b) => a - b
 				const isLeapYear = (year) => {
 					if (year % 4 === 0 || year % 100 === 0 || year % 400 === 0) {
 						mnths[1] = 29
 					} else {
 						mnths[1] = 28
+					}
+				}
+
+				const ageYear = () => {
+					year = diff(currentYr,year)
+				}
+				const ageMonth = () => {
+					if (currentMnth >= month) {
+						month = diff(currentMnth,month - 1)
+					} else {
+						year--
+						month = 12 + diff(currentMnth,month - 1)
+					}
+
+				}
+				const ageDay = () => {
+					if(day > mnths[currentMnth - 1]){
+						day = 0;
+						month++;
+					}else if (currentDay >= day) {
+						day = diff(currentDay,day)
+					} else {
+						month--
+						let days = mnths[currentMnth - 2]
+						day = days + diff(currentDay,day)
+						if (month === 0) {
+							month = 11
+							year--
+						}
 					}
 				}
 				const calculateAge = () => {
@@ -81,35 +109,16 @@ const Form = () => {
 						(month > currentMnth && year === currentYr) ||
 						(day > currentDay && month === currentMnth && year === currentYr)
 					) {
-						setError(true)
 						alert('Sorry! You are still unborn. Please, be patient')
 						return
 					}
 
-					year = currentYr - year
-					if (currentMnth >= month) {
-						month = currentMnth - month
-					} else {
-						year--
-						month = 12 + currentMnth - month
-					}
+					ageYear()
+					ageMonth()
+					ageDay()
 
-					if (currentDay >= day) {
-						day = currentDay - day
-					} else {
-						month--
-						let days = mnths[currentMnth - 2]
-						day = days + currentDay - day
-						if (month === 0) {
-							month = 11
-							year--
-						}
-					}
-					console.log(year, month , day);
 				}
 				calculateAge()
-				// const ageMnths = diff(new Date().getMonth(), month - 1)
-				// const ageDays = diff(new Date().getDate(), day)
 
 				return (
 					<div key={id}>
