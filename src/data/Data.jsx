@@ -4,26 +4,22 @@ const inputs = [
 		name: 'day',
 		type: 'number',
 		placeholder: 'dd',
-		min: '1',
-		max: '31',
+		errMsg:'Please fill in a valid date',
 	},
 	{
 		id: 2,
 		name: 'month',
 		type: 'number',
 		placeholder: 'mm',
-		min: '1',
-		max: '12',
+		errMsg:'Please fill in a valid month',
 	},
 	{
 		id: 3,
 		name: 'year',
 		type: 'number',
 		placeholder: 'yyyy',
-		min: new Date(1800, 1, 1).getFullYear(),
-		max: new Date().getFullYear().toString(),
+		errMsg:'Please fill in a valid year',
 	},
 ]
-
 
 export { inputs }
