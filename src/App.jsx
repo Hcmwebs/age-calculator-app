@@ -1,32 +1,41 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Form, Title } from './components'
+import GlobalStyles from './GlobalStyles'
+import { useGlobalContext } from './context/appContext'
 
 const App = () => {
+	const { name } = useGlobalContext()
+
 	return (
-		<div className='container'>
-			<Title />
-			<Wrapper>
-				<Form />
-				<div className='age'>
-					<div className='years'>
-						<h2>
-							<span>32</span>years
-						</h2>
+		<>
+			<GlobalStyles />
+
+			<div className='container'>
+				<Title />
+				<h2>{name}</h2>
+				<Wrapper>
+					<Form />
+					<div className='age'>
+						<div className='years'>
+							<h2>
+								<span>32</span>years
+							</h2>
+						</div>
+						<div className='years'>
+							<h2>
+								<span>3</span>months
+							</h2>
+						</div>
+						<div className='years'>
+							<h2>
+								<span>26</span>days
+							</h2>
+						</div>
 					</div>
-					<div className='years'>
-						<h2>
-							<span>3</span>months
-						</h2>
-					</div>
-					<div className='years'>
-						<h2>
-							<span>26</span>days
-						</h2>
-					</div>
-				</div>
-			</Wrapper>
-		</div>
+				</Wrapper>
+			</div>
+		</>
 	)
 }
 
