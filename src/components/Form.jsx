@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { inputs } from '../data/Data'
 import { FormInput } from './index'
-// import uniqid from 'uniqid'
+import uniqid from 'uniqid'
 const Form = () => {
 	const [birthDate, setBirthDate] = useState({ day: '', month: '', year: '' })
 	const [birthDates, setBirthDates] = useState([])
@@ -12,8 +12,6 @@ const Form = () => {
 	const currentYr = today.getFullYear()
 	const currentMnth = today.getMonth() + 1
 	const currentDay = today.getDate()
-
-
 
 	const handleChange = (e) => {
 		const value = e.target.value
@@ -28,7 +26,7 @@ const Form = () => {
 			console.log('cannot be blank')
 		} else {
 			setError(false)
-			const newId = new Date().getTime().toString()
+			const newId = uniqid()
 			const newBirthDate = { ...birthDate, id: newId }
 			const updatedBirthDates = [...birthDates, newBirthDate]
 			setBirthDates(updatedBirthDates)
@@ -73,27 +71,26 @@ const Form = () => {
 				}
 
 				const ageYear = () => {
-					year = diff(currentYr,year)
+					year = diff(currentYr, year)
 				}
 				const ageMonth = () => {
 					if (currentMnth >= month) {
-						month = diff(currentMnth,month - 1)
+						month = diff(currentMnth, month - 1)
 					} else {
 						year--
-						month = 12 + diff(currentMnth,month - 1)
+						month = 12 + diff(currentMnth, month - 1)
 					}
-
 				}
 				const ageDay = () => {
-					if(day > mnths[currentMnth - 1]){
-						day = 0;
-						month++;
-					}else if (currentDay >= day) {
-						day = diff(currentDay,day)
+					if (day > mnths[currentMnth - 1]) {
+						day = 0
+						month++
+					} else if (currentDay >= day) {
+						day = diff(currentDay, day)
 					} else {
 						month--
 						let days = mnths[currentMnth - 2]
-						day = days + diff(currentDay,day)
+						day = days + diff(currentDay, day)
 						if (month === 0) {
 							month = 11
 							year--
@@ -101,7 +98,6 @@ const Form = () => {
 					}
 				}
 				const calculateAge = () => {
-
 					isLeapYear(currentYr)
 
 					if (
@@ -116,7 +112,6 @@ const Form = () => {
 					ageYear()
 					ageMonth()
 					ageDay()
-
 				}
 				calculateAge()
 
