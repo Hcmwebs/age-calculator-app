@@ -8,9 +8,6 @@ const App = () => {
 			<Title />
 			<Wrapper>
 				<Form />
-				<button className='submit'>
-					
-				</button>
 				<div className='age'>
 					<div className='years'>
 						<h2>
