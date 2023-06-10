@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { inputs } from '../data/Data'
 import { FormInput } from './index'
 import uniqid from 'uniqid'
+import styled from 'styled-components'
 const Form = () => {
 	const [birthDate, setBirthDate] = useState({ day: '', month: '', year: '' })
 	const [birthDates, setBirthDates] = useState([])
@@ -34,29 +35,34 @@ const Form = () => {
 		}
 	}
 	return (
-		<>
+		<Wrapper>
 			<form onSubmit={handleSubmit}>
-				{inputs.map((input) => {
-					return (
-						<FormInput
-							key={input.id}
-							{...input}
-							birthDate={birthDate}
-							handleChange={handleChange}
-						/>
-					)
-				})}
-				<button className='submit'>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						width='46'
-						height='44'
-						viewBox='0 0 46 44'>
-						<g fill='none' stroke='#FFF' strokeWidth='2'>
-							<path d='M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44' />
-						</g>
-					</svg>
-				</button>
+				<div className='inputs'>
+					{inputs.map((input) => {
+						return (
+							<FormInput
+								key={input.id}
+								{...input}
+								birthDate={birthDate}
+								handleChange={handleChange}
+							/>
+						)
+					})}
+				</div>
+				<div className='submit'>
+					<hr />
+					<button className='submit'>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							width='46'
+							height='44'
+							viewBox='0 0 46 44'>
+							<g fill='none' stroke='#FFF' strokeWidth='2'>
+								<path d='M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44' />
+							</g>
+						</svg>
+					</button>
+				</div>
 			</form>
 
 			{birthDates.map((birthDate) => {
@@ -123,8 +129,54 @@ const Form = () => {
 					</div>
 				)
 			})}
-		</>
+		</Wrapper>
 	)
 }
+
+const Wrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap:2.5rem;
+	padding: 2rem 1.5rem;
+	margin: 0 auto;
+
+	form {
+		display: grid;
+		place-items: center;
+		gap: 2.5rem;
+	}
+
+	.inputs {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.submit {
+		width: 100%;
+		position: relative;
+
+		button {
+			position: absolute;
+			top: 50%;
+			right: 50%;
+			transform: translate(50%, -50%);
+			width: 4rem;
+			height: 4rem;
+			border: none;
+			outline: none;
+			border-radius: 50%;
+			background-color: var(--purple);
+			cursor: pointer;
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+	}
+`
 
 export default Form
