@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root{
@@ -39,6 +39,6 @@ html{
     gap: 1rem;
   }
 
-`
+`;
 
-export default GlobalStyles
+export default GlobalStyles;
