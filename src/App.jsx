@@ -1,11 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
-import { Form, Title } from './components'
-import GlobalStyles from './GlobalStyles'
-import { useGlobalContext } from './context/appContext'
+import React from 'react';
+import styled from 'styled-components';
+import { Form, Title } from './components';
+import GlobalStyles from './GlobalStyles';
+import { useGlobalContext } from './context/appContext';
 
 const App = () => {
-	const { name } = useGlobalContext()
+	const { name } = useGlobalContext();
 
 	return (
 		<>
@@ -17,8 +17,8 @@ const App = () => {
 				</Wrapper>
 			</div>
 		</>
-	)
-}
+	);
+};
 
 const Wrapper = styled.div`
 	width: 100%;
@@ -27,6 +27,6 @@ const Wrapper = styled.div`
 	place-items: center;
 	background-color: #fff;
 	border-radius: 1.5rem 1.5rem 6.25rem 1.5rem;
-`
+`;
 
-export default App
+export default App;
