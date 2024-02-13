@@ -167,6 +167,8 @@ const Wrapper = styled.div`
 			transform: translate(50%, -50%);
 			width: 4rem;
 			height: 4rem;
+			display: grid;
+			place-items: center;
 			border: none;
 			outline: none;
 			border-radius: 50%;
