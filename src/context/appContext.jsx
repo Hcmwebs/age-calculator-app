@@ -5,7 +5,7 @@ const GlobalContext = createContext();
 const AppContext = ({ children }) => {
 	const initialState = { day: '', month: '', year: '' };
 	const [birthDate, setBirthDate] = useState(initialState);
-	const [birthDates, setBirthDates] = useState([]);
+	// const [birthDates, setBirthDates] = useState([]);
 	const [error, setError] = useState(false);
 	const mnths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 	const today = new Date();
@@ -18,7 +18,6 @@ const AppContext = ({ children }) => {
 		const value = e.target.value;
 		const name = e.target.name;
 		setBirthDate({ ...birthDate, [name]: value });
-		console.log(birthDate);
 	};
 
 	const handleSubmit = (e) => {
@@ -29,21 +28,20 @@ const AppContext = ({ children }) => {
 			return;
 		}
 		setError(false);
+		setBirthDate(birthDate);
 		calculateAge(birthDate);
-		console.log(birthDate.year, birthDate.month, birthDate.month);
 	};
 
 	const isLeapYear = (year) => {
-		if (year % 4 === 0 || year % 100 === 0 || year % 400 === 0) {
-			mnths[1] = 29;
-		} else {
-			mnths[1] = 28;
-		}
+		return year % 4 === 0 || year % 100 === 0 || year % 400 === 0;
 	};
 
 	const calculateAge = (date) => {
 		let { id, day, month, year } = date;
 		// set is loading with countdown effect
+		day = parseFloat(day);
+		month = parseFloat(month);
+		year = parseFloat(year);
 
 		// check if year is leap year
 		isLeapYear(currentYr);
@@ -58,12 +56,6 @@ const AppContext = ({ children }) => {
 			alert('Your are still NOT born! Please be patient!');
 			setBirthDate(initialState);
 		}
-
-		const newId = nanoid();
-		const newBirthDate = { ...birthDate, id: newId };
-		const updatedBirthDates = [...birthDates, newBirthDate];
-		setBirthDates(updatedBirthDates);
-		setBirthDate(initialState);
 
 		const diff = (a, b) => a - b;
 
@@ -96,19 +88,21 @@ const AppContext = ({ children }) => {
 			}
 			return day;
 		};
-		ageDay();
 		ageMonth();
 		ageYear();
+		ageDay();
+
+		return year, month, day;
 	};
 
 	return (
 		<GlobalContext.Provider
 			value={{
 				birthDate,
-				birthDates,
 				handleChange,
 				handleSubmit,
 				error,
+				calculateAge,
 			}}
 		>
 			{children}
