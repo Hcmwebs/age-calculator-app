@@ -41,7 +41,7 @@ const Form = () => {
 			<div className='min-h-10'>
 				<div>
 					<h2>
-						<span>{birthDates.year || '--'}</span> years
+						<span>{birthDates || '--'}</span> years
 					</h2>
 					<h2>
 						<span> {birthDates.month || '--'}</span>months

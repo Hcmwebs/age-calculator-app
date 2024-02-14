@@ -5,8 +5,6 @@ import GlobalStyles from './GlobalStyles';
 import { useGlobalContext } from './context/appContext';
 
 const App = () => {
-	const { name } = useGlobalContext();
-
 	return (
 		<>
 			<GlobalStyles />

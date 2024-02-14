@@ -18,6 +18,7 @@ const AppContext = ({ children }) => {
 		const value = e.target.value;
 		const name = e.target.name;
 		setBirthDate({ ...birthDate, [name]: value });
+		console.log(birthDate);
 	};
 
 	const handleSubmit = (e) => {
@@ -28,11 +29,8 @@ const AppContext = ({ children }) => {
 			return;
 		}
 		setError(false);
-		const newId = nanoid();
-		const newBirthDate = { ...birthDate, id: newId };
-		const updatedBirthDates = [...birthDates, newBirthDate];
-		setBirthDates(updatedBirthDates);
-		console.log(birthDates);
+		calculateAge(birthDate);
+		console.log(birthDate.year, birthDate.month, birthDate.month);
 	};
 
 	const isLeapYear = (year) => {
@@ -43,22 +41,34 @@ const AppContext = ({ children }) => {
 		}
 	};
 
-	const calculateAge = () => {
-		let { id, day, month, year } = birthDates;
+	const calculateAge = (date) => {
+		let { id, day, month, year } = date;
+		// set is loading with countdown effect
 
+		// check if year is leap year
 		isLeapYear(currentYr);
 
+		// check for unborn
 		if (
 			year > currentYr ||
 			(month > currentYr && year === currentYr) ||
 			(day > currentDay && month === currentMnth && year === currentYr)
 		) {
+			setError(true);
+			alert('Your are still NOT born! Please be patient!');
+			setBirthDate(initialState);
 		}
+
+		const newId = nanoid();
+		const newBirthDate = { ...birthDate, id: newId };
+		const updatedBirthDates = [...birthDates, newBirthDate];
+		setBirthDates(updatedBirthDates);
+		setBirthDate(initialState);
 
 		const diff = (a, b) => a - b;
 
 		const ageYear = () => {
-			year = diff(currentYr, year);
+			return (year = diff(currentYr, year));
 		};
 		const ageMonth = () => {
 			if (currentMnth >= month) {
@@ -67,6 +77,7 @@ const AppContext = ({ children }) => {
 				year--;
 				month = 12 + diff(currentMnth, month - 1);
 			}
+			return month;
 		};
 		const ageDay = () => {
 			if (day > mnths[currentMnth - 1]) {
@@ -83,6 +94,7 @@ const AppContext = ({ children }) => {
 					year--;
 				}
 			}
+			return day;
 		};
 		ageDay();
 		ageMonth();
@@ -97,7 +109,6 @@ const AppContext = ({ children }) => {
 				handleChange,
 				handleSubmit,
 				error,
-				calculateAge,
 			}}
 		>
 			{children}
