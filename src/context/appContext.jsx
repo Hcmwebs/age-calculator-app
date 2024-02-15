@@ -5,7 +5,7 @@ const GlobalContext = createContext();
 const AppContext = ({ children }) => {
 	const initialState = { day: '', month: '', year: '' };
 	const [birthDate, setBirthDate] = useState(initialState);
-	// const [birthDates, setBirthDates] = useState([]);
+	const [birthDates, setBirthDates] = useState([]);
 	const [error, setError] = useState(false);
 	const mnths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 	const today = new Date();
@@ -27,35 +27,46 @@ const AppContext = ({ children }) => {
 			console.log('cannot be blank');
 			return;
 		}
+		if (
+			birthDate.year > currentYr ||
+			(birthDate.month > currentMnth && birthDate.year === currentYr) ||
+			(birthDate.day > currentDay &&
+				birthDate.month === currentMnth &&
+				birthDate.year === currentYr)
+		) {
+			setError(true);
+			alert('Your are still NOT born! Please be patient!');
+			return;
+		}
 		setError(false);
 		setBirthDate(birthDate);
-		calculateAge(birthDate);
+		const year = parseFloat(birthDate.year);
+
+		const years = currentYr - year;
+		console.log(today, typeof today);
+		console.log(currentYr, typeof currentYr);
+		console.log(year, typeof year);
+		console.log(years, typeof years);
 	};
+
+	// const years = newDate.getFullYear() - 1970;
+	// const months = newDate.getMonth();
+	// const days = newDate.getDate() - 1;
+
+	// console.log(years, months, days);
 
 	const isLeapYear = (year) => {
 		return year % 4 === 0 || year % 100 === 0 || year % 400 === 0;
 	};
 
 	const calculateAge = (date) => {
-		let { id, day, month, year } = date;
+		let { day, month, year } = date;
 		// set is loading with countdown effect
 		day = parseFloat(day);
 		month = parseFloat(month);
 		year = parseFloat(year);
 
-		// check if year is leap year
-		isLeapYear(currentYr);
-
 		// check for unborn
-		if (
-			year > currentYr ||
-			(month > currentYr && year === currentYr) ||
-			(day > currentDay && month === currentMnth && year === currentYr)
-		) {
-			setError(true);
-			alert('Your are still NOT born! Please be patient!');
-			setBirthDate(initialState);
-		}
 
 		const diff = (a, b) => a - b;
 
@@ -88,11 +99,11 @@ const AppContext = ({ children }) => {
 			}
 			return day;
 		};
-		console.log(ageDay());
-		console.log(ageMonth());
-		console.log(ageYear());
+		ageMonth();
+		ageYear();
+		ageDay();
 
-		return year, month, day;
+		return { year, month, day };
 	};
 
 	return (

@@ -19,6 +19,7 @@ const inputs = [
 		type: 'number',
 		placeholder: 'yyyy',
 		errMsg: 'Please fill in a valid year',
+		max: new Date().getFullYear(),
 	},
 ];
 

@@ -40,15 +40,15 @@ const Form = () => {
 
 			<div className='min-h-10'>
 				<div>
-					<h2>
-						<span> -- </span> years
+					{/* <h2>
+						<span> {year || '--'} </span> years
 					</h2>
 					<h2>
-						<span> -- </span>months
+						<span> {month || '--'} </span>months
 					</h2>
 					<h2>
-						<span> -- </span>days
-					</h2>
+						<span> {day || '--'} </span>days
+					</h2> */}
 				</div>
 			</div>
 		</Wrapper>
