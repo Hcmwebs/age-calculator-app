@@ -43,6 +43,7 @@ const AppContext = ({ children }) => {
 		const year = parseFloat(birthDate.year);
 
 		const years = currentYr - year;
+
 		console.log(today, typeof today);
 		console.log(currentYr, typeof currentYr);
 		console.log(year, typeof year);
