@@ -88,9 +88,9 @@ const AppContext = ({ children }) => {
 			}
 			return day;
 		};
-		ageMonth();
-		ageYear();
-		ageDay();
+		console.log(ageDay());
+		console.log(ageMonth());
+		console.log(ageYear());
 
 		return year, month, day;
 	};
