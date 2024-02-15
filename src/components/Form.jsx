@@ -5,8 +5,7 @@ import styled from 'styled-components';
 import { useGlobalContext } from '../context/appContext';
 const Form = () => {
 	const { handleSubmit, birthDate, handleChange } = useGlobalContext();
-	const { day, month, year } = handleSubmit;
-	console.log(day, month, year);
+
 	return (
 		<Wrapper>
 			<form onSubmit={handleSubmit}>
@@ -42,13 +41,13 @@ const Form = () => {
 			<div className='min-h-10'>
 				<div>
 					<h2>
-						<span>{year || '--'}</span> years
+						<span> -- </span> years
 					</h2>
 					<h2>
-						<span> {month || '--'}</span>months
+						<span> -- </span>months
 					</h2>
 					<h2>
-						<span>{day || '--'}</span>days
+						<span> -- </span>days
 					</h2>
 				</div>
 			</div>
