@@ -40,21 +40,7 @@ const AppContext = ({ children }) => {
 		}
 		setError(false);
 		setBirthDate(birthDate);
-		const year = parseFloat(birthDate.year);
-
-		const years = currentYr - year;
-
-		console.log(today, typeof today);
-		console.log(currentYr, typeof currentYr);
-		console.log(year, typeof year);
-		console.log(years, typeof years);
 	};
-
-	// const years = newDate.getFullYear() - 1970;
-	// const months = newDate.getMonth();
-	// const days = newDate.getDate() - 1;
-
-	// console.log(years, months, days);
 
 	const isLeapYear = (year) => {
 		return year % 4 === 0 || year % 100 === 0 || year % 400 === 0;
@@ -66,8 +52,6 @@ const AppContext = ({ children }) => {
 		day = parseFloat(day);
 		month = parseFloat(month);
 		year = parseFloat(year);
-
-		// check for unborn
 
 		const diff = (a, b) => a - b;
 
