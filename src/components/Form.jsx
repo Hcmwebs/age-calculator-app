@@ -4,7 +4,10 @@ import { FormInput } from './index';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context/appContext';
 const Form = () => {
-	const { handleSubmit, birthDate, handleChange } = useGlobalContext();
+	const { handleSubmit, birthDate, handleChange, calculateAge } =
+		useGlobalContext();
+
+	const { year, month, day } = calculateAge(birthDate);
 
 	return (
 		<Wrapper>
@@ -38,18 +41,16 @@ const Form = () => {
 				</div>
 			</form>
 
-			<div className='min-h-10'>
-				<div>
-					{/* <h2>
-						<span> {year || '--'} </span> years
-					</h2>
-					<h2>
-						<span> {month || '--'} </span>months
-					</h2>
-					<h2>
-						<span> {day || '--'} </span>days
-					</h2> */}
-				</div>
+			<div className=' w-full grid grid-col-1 gap-y-2'>
+				<h2 className='text-4xl italic text-bold'>
+					<span className='text-purple-500'> {year || '--'} </span> years
+				</h2>
+				<h2>
+					<span> {month || '--'} </span>months
+				</h2>
+				<h2>
+					<span> {day || '--'} </span>days
+				</h2>
 			</div>
 		</Wrapper>
 	);
