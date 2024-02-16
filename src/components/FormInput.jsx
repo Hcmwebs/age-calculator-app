@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useGlobalContext } from '../context/appContext';
 
 const FormInput = ({
 	id,
@@ -10,7 +11,9 @@ const FormInput = ({
 	max,
 	birthDate,
 	handleChange,
+	errMsg,
 }) => {
+	const { error } = useGlobalContext();
 	return (
 		<Wrapper>
 			<div className='form-group'>
@@ -24,25 +27,25 @@ const FormInput = ({
 					value={birthDate.value}
 					onChange={handleChange}
 				/>
+				{error && <span className='danger'>{errMsg}</span>}
 			</div>
 		</Wrapper>
-	)
-}
+	);
+};
 
 const Wrapper = styled.div`
 	.form-group {
 		display: grid;
-		gap:0.2rem;
+		gap: 0.2rem;
 	}
-	label{
+	label {
 		padding: 0 0.5rem;
-		text-transform:Capitalize;
+		text-transform: Capitalize;
 	}
-	input{
+	input {
 		width: 100px;
-		padding:0.3rem 0.6rem;
-
+		padding: 0.3rem 0.6rem;
 	}
-`
+`;
 
-export default FormInput
+export default FormInput;
