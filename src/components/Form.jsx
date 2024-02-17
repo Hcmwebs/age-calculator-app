@@ -10,7 +10,7 @@ const Form = () => {
 	const { year, month, day } = calculateAge(birthDate);
 
 	return (
-		<Wrapper>
+		<>
 			<form onSubmit={handleSubmit}>
 				<div className='inputs'>
 					{inputs.map((input) => {
@@ -52,7 +52,7 @@ const Form = () => {
 					<span> {day || '--'} </span>days
 				</h2>
 			</div>
-		</Wrapper>
+		</>
 	);
 };
 
