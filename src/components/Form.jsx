@@ -7,8 +7,6 @@ const Form = () => {
 	const { handleSubmit, birthDate, handleChange, calculateAge } =
 		useGlobalContext();
 
-	const { year, month, day } = calculateAge(birthDate);
-
 	return (
 		<>
 			<form onSubmit={handleSubmit}>
@@ -24,34 +22,7 @@ const Form = () => {
 						);
 					})}
 				</div>
-				<div className='submit'>
-					<hr />
-					<button className='submit'>
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							width='46'
-							height='44'
-							viewBox='0 0 46 44'
-						>
-							<g fill='none' stroke='#FFF' strokeWidth='2'>
-								<path d='M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44' />
-							</g>
-						</svg>
-					</button>
-				</div>
 			</form>
-
-			<div className=' w-full grid grid-col-1 gap-y-2'>
-				<h2 className='text-4xl italic text-bold'>
-					<span className='text-purple-500'> {year || '--'} </span> years
-				</h2>
-				<h2>
-					<span> {month || '--'} </span>months
-				</h2>
-				<h2>
-					<span> {day || '--'} </span>days
-				</h2>
-			</div>
 		</>
 	);
 };
