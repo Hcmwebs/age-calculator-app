@@ -3,10 +3,9 @@ import { Card, Form, Title } from './components';
 
 const App = () => {
 	return (
-		<>
-			<Title />
+		<main className='bg-base-100 grid grid-col-1 place-items-center min-h-screen'>
 			<Card />
-		</>
+		</main>
 	);
 };
 
