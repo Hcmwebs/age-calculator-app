@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { inputs } from '../data/Data';
-import { FormInput } from './index';
+import { Divider, FormInput } from './index';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context/appContext';
 const Form = () => {
-	const { handleSubmit, birthDate, handleChange, calculateAge } =
-		useGlobalContext();
+	const { handleSubmit, birthDate, handleChange } = useGlobalContext();
 
 	return (
 		<>
@@ -22,6 +21,7 @@ const Form = () => {
 						);
 					})}
 				</div>
+				<Divider />
 			</form>
 		</>
 	);
