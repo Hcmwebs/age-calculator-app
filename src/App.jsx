@@ -1,11 +1,11 @@
 import React from 'react';
-import { Form, Title } from './components';
+import { Card, Form, Title } from './components';
 
 const App = () => {
 	return (
 		<>
 			<Title />
-			<Form />
+			<Card />
 		</>
 	);
 };
