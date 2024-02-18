@@ -1,22 +1,22 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
 const Title = () => {
 	return (
-		<Wrapper>
-			<h1>
-				<span>Age</span> Calculator
+		<div className='grid place-items-center'>
+			<h1 className='text-4xl'>
+				<span className='text-primary'>Age</span> Calculator
 			</h1>
 			<div className='underline'></div>
-		</Wrapper>
-	)
-}
+		</div>
+	);
+};
 const Wrapper = styled.div`
 	width: max-content;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  flex-direction: column;
+	flex-direction: column;
 
 	h1 {
 		font-size: 2rem;
@@ -28,11 +28,11 @@ const Wrapper = styled.div`
 			color: var(--purple);
 		}
 	}
-  .underline {
-    width: 30%;
-    height: 0.25rem;
-    background-color: var(--purple);
-  }
-`
+	.underline {
+		width: 30%;
+		height: 0.25rem;
+		background-color: var(--purple);
+	}
+`;
 
-export default Title
+export default Title;
