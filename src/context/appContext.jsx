@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import getFormValues from '../utils/getFormValues';
 const GlobalContext = createContext();
 
 const AppContext = ({ children }) => {
@@ -22,74 +23,74 @@ const AppContext = ({ children }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (!birthDate.day || !birthDate.month || !birthDate.year) {
+		const { isEmpty, data } = getFormValues(e.currentTarget);
+		if (isEmpty) {
 			setError(true);
 			console.log('cannot be blank');
 			return;
 		}
-		if (
-			birthDate.year > currentYr ||
-			(birthDate.month > currentMnth && birthDate.year === currentYr) ||
-			(birthDate.day > currentDay &&
-				birthDate.month === currentMnth &&
-				birthDate.year === currentYr)
-		) {
-			setError(true);
-			alert('Your are still NOT born! Please be patient!');
-			return;
-		}
+
 		setError(false);
-		setBirthDate(birthDate);
+		setBirthDate(data);
+		e.currentTarget.reset();
 	};
 
-	const isLeapYear = (year) => {
-		return year % 4 === 0 || year % 100 === 0 || year % 400 === 0;
+	const diff = (a, b) => a - b;
+
+	const ageInYears = (year) => {
+		return (year = diff(currentYr, year));
 	};
 
-	const calculateAge = (date) => {
-		let { day, month, year } = date;
-		// set is loading with countdown effect
-		day = parseFloat(day);
-		month = parseFloat(month);
-		year = parseFloat(year);
-
-		const diff = (a, b) => a - b;
-
-		const ageYear = () => {
-			return (year = diff(currentYr, year));
-		};
-		const ageMonth = () => {
-			if (currentMnth >= month) {
-				month = diff(currentMnth, month - 1);
-			} else {
-				year--;
-				month = 12 + diff(currentMnth, month - 1);
-			}
-			return month;
-		};
-		const ageDay = () => {
-			if (day > mnths[currentMnth - 1]) {
-				day = 0;
-				month++;
-			} else if (currentDay >= day) {
-				day = diff(currentDay, day);
-			} else {
-				month--;
-				let days = mnths[currentMnth - 2];
-				day = days + diff(currentDay, day);
-				if (month === 0) {
-					month = 11;
-					year--;
-				}
-			}
-			return day;
-		};
-		ageMonth();
-		ageYear();
-		ageDay();
-
-		return { year, month, day };
+	const ageInMonths = () => {
+		let months = 0;
+		const { day, month, year } = birthDate;
+		const newDate = new Date(year, day, month);
+		const diffDate = diff(today, newDate);
+		console.log(birthDate);
+		console.log(today, newDate);
+		console.log(diffDate);
 	};
+	// console.log(ageInYears(birthDate.year));
+	console.log(ageInMonths());
+
+	// const calculateAge = (data) => {
+	// 	// set is loading with countdown effect
+
+	// 	const ageYear = () => {
+	// 		return (year = diff(currentYr, year));
+	// 	};
+	// 	const ageMonth = () => {
+	// 		if (currentMnth >= month) {
+	// 			month = diff(currentMnth, month - 1);
+	// 		} else {
+	// 			year--;
+	// 			month = 12 + diff(currentMnth, month - 1);
+	// 		}
+	// 		return month;
+	// 	};
+	// 	const ageDay = () => {
+	// 		if (day > mnths[currentMnth - 1]) {
+	// 			day = 0;
+	// 			month++;
+	// 		} else if (currentDay >= day) {
+	// 			day = diff(currentDay, day);
+	// 		} else {
+	// 			month--;
+	// 			let days = mnths[currentMnth - 2];
+	// 			day = days + diff(currentDay, day);
+	// 			if (month === 0) {
+	// 				month = 11;
+	// 				year--;
+	// 			}
+	// 		}
+	// 		return day;
+	// 	};
+	// 	ageMonth();
+	// 	ageYear();
+	// 	ageDay();
+
+	// 	return { year, month, day };
+	// };
 
 	return (
 		<GlobalContext.Provider
@@ -98,7 +99,6 @@ const AppContext = ({ children }) => {
 				handleChange,
 				handleSubmit,
 				error,
-				calculateAge,
 			}}
 		>
 			{children}
