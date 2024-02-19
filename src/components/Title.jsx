@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Title = () => {
 	return (
-		<div className='grid place-items-center gap-y-4 '>
+		<div className='grid place-items-center gap-y-2 '>
 			<h1 className='text-4xl font-bold italic'>
 				<span className='text-primary'>Age</span> Calculator
 			</h1>
