@@ -6,7 +6,8 @@ const inputs = [
 		placeholder: 'dd',
 		min: 1,
 		max: 31,
-		errMsg: 'Please fill in a valid date',
+		errMsg: 'Must be a valid day',
+		required: true,
 	},
 	{
 		id: 2,
@@ -15,15 +16,17 @@ const inputs = [
 		placeholder: 'mm',
 		min: 1,
 		max: 12,
-		errMsg: 'Please fill in a valid month',
+		errMsg: 'Must be a valid month',
+		required: true,
 	},
 	{
 		id: 3,
 		name: 'year',
 		type: 'number',
 		placeholder: 'yyyy',
-		errMsg: 'Please fill in a valid year',
 		max: new Date().getFullYear(),
+		errMsg: 'Must be a valid year',
+		required: true,
 	},
 ];
 
