@@ -1,4 +1,5 @@
 import { useGlobalContext } from '../context/appContext';
+import AgeItem from './AgeItem';
 
 const Age = () => {
 	const { age } = useGlobalContext();
@@ -10,11 +11,13 @@ const Age = () => {
 				<span className='text-purple-500'> {years || '--'} </span>
 				years
 			</h2>
-			<h2>
-				<span> {months} </span>months
+			<h2 className='text-4xl italic text-bold'>
+				<span className='text-purple-500'> {months || '--'} </span>
+				months
 			</h2>
-			<h2>
-				<span> {days} </span>days
+			<h2 className='text-4xl italic text-bold'>
+				<span className='text-purple-500'> {days || '--'} </span>
+				days
 			</h2>
 		</div>
 	);

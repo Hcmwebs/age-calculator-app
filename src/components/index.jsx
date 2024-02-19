@@ -4,5 +4,6 @@ import FormInput from './FormInput';
 import Card from './Card';
 import Age from './Age';
 import Divider from './Divider';
+import AgeItem from './AgeItem';
 
-export { Divider, Title, Form, FormInput, Card, Age };
+export { AgeItem, Divider, Title, Form, FormInput, Card, Age };

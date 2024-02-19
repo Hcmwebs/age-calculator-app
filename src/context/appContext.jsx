@@ -11,6 +11,7 @@ const AppContext = ({ children }) => {
 	const [age, setAge] = useState(initialAge);
 
 	const today = new Date();
+	const currentMnth = today.getMonth();
 
 	const handleChange = (e) => {
 		const value = e.target.value;
