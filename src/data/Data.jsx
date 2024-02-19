@@ -4,6 +4,8 @@ const inputs = [
 		name: 'day',
 		type: 'number',
 		placeholder: 'dd',
+		min: 1,
+		max: 31,
 		errMsg: 'Please fill in a valid date',
 	},
 	{
@@ -11,6 +13,8 @@ const inputs = [
 		name: 'month',
 		type: 'number',
 		placeholder: 'mm',
+		min: 1,
+		max: 12,
 		errMsg: 'Please fill in a valid month',
 	},
 	{
