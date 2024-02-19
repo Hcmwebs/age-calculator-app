@@ -34,7 +34,8 @@ const FormInput = ({
 					value={birthDate.value}
 					onChange={handleChange}
 					className='input input-bordered w-full rounded-lg border-base-100 bg-transparent text-black text-xl tracking-[0.2px] font-bold py-3 px-4 focus:outline-none focus:ring-[1px] focus:ring-primary invalid:ring-secondary
-					invalid:border-[1px] invalid:border-secondary focus:invalid:ring-secondary focus:invalid:border-secondary'
+					invalid:border-[1px] invalid:border-secondary focus:invalid:ring-secondary focus:invalid:border-secondary
+					placeholder:uppercase'
 				/>
 				{error && (
 					<span className='text-secondary font-normal text-[14px] italic'>
