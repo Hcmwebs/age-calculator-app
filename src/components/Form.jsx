@@ -8,8 +8,8 @@ const Form = () => {
 
 	return (
 		<>
-			<form onSubmit={handleSubmit}>
-				<div className='inputs'>
+			<form className='grid grid-col-1 gap-y-8 ' onSubmit={handleSubmit}>
+				<div className='flex gap-x-4'>
 					{inputs.map((input) => {
 						return (
 							<FormInput
