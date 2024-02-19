@@ -25,7 +25,7 @@ const inputs = [
 		type: 'number',
 		placeholder: 'yyyy',
 		max: new Date().getFullYear(),
-		errMsg: 'Must be a valid year',
+		errMsg: 'Must be in the past',
 		required: true,
 	},
 ];
