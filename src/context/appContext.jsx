@@ -21,7 +21,6 @@ const AppContext = ({ children }) => {
 		const { isEmpty, data } = getFormValues(e.currentTarget);
 		if (isEmpty) {
 			setError(true);
-			alert('cannot be blank');
 			return;
 		}
 

@@ -25,8 +25,7 @@ const FormInput = ({
 					value={birthDate.value}
 					onChange={handleChange}
 					className='input input-bordered w-full rounded-lg border-base-100 bg-transparent text-black text-xl tracking-[0.2px] font-bold py-3 px-4 focus:outline-none focus:ring-[1px] focus:ring-primary invalid:ring-secondary
-					invalid:ring-1 focus:invalid:ring-secondary focus:invalid:ring-1
-					placeholder:uppercase
+					invalid:ring-1 focus:invalid:ring-secondary focus:invalid:ring-1 placeholder:uppercase
 					peer'
 				/>
 				<label
