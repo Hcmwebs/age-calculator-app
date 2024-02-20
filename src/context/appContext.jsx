@@ -1,5 +1,4 @@
-import { nanoid } from 'nanoid';
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import getFormValues from '../utils/getFormValues';
 const GlobalContext = createContext();
 
@@ -22,7 +21,7 @@ const AppContext = ({ children }) => {
 		const { isEmpty, data } = getFormValues(e.currentTarget);
 		if (isEmpty) {
 			setError(true);
-			console.log('cannot be blank');
+			alert('cannot be blank');
 			return;
 		}
 
