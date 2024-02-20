@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Form, Title } from './components';
+import { Card } from './components';
 
 const App = () => {
 	return (

@@ -1,4 +1,3 @@
-import React from 'react';
 import btnImg from '../assets/icon-arrow.svg';
 
 const Divider = () => {
