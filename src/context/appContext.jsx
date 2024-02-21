@@ -8,6 +8,9 @@ const AppContext = ({ children }) => {
 	const [birthDate, setBirthDate] = useState(initialState);
 	const [error, setError] = useState(false);
 	const [age, setAge] = useState(initialAge);
+	const [focused, setFocused] = useState(false);
+
+	const handleFocus = () => setFocused(true);
 
 	const handleChange = (e) => {
 		const value = e.target.value;
@@ -86,6 +89,8 @@ const AppContext = ({ children }) => {
 				error,
 				age,
 				calculateAge,
+				focused,
+				handleFocus,
 			}}
 		>
 			{children}

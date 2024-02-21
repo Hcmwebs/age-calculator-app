@@ -6,6 +6,7 @@ const inputs = [
 		placeholder: 'dd',
 		min: 1,
 		max: 31,
+		pattern: '^(3[01]|[12][0-9]|0?[1-9])$',
 		errMsg: 'Must be a valid day',
 		required: true,
 	},
@@ -17,6 +18,7 @@ const inputs = [
 		min: 1,
 		max: 12,
 		errMsg: 'Must be a valid month',
+		pattern: '^(1[0-2]|0?[1-9])$',
 		required: true,
 	},
 	{
@@ -26,6 +28,7 @@ const inputs = [
 		placeholder: 'yyyy',
 		max: new Date().getFullYear(),
 		errMsg: 'Must be in the past',
+		pattern: '^(19|20)d{2,4}$',
 		required: true,
 	},
 ];
