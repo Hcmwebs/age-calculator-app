@@ -16,7 +16,7 @@ const formValidation = (values) => {
 	if (!values.months || !monthsPattern.test(values.months)) {
 		errors.month = 'Must be a valid month';
 	} else {
-		isLeapYear(value.year);
+		isLeapYear(values.year);
 	}
 
 	// check if a valid year
