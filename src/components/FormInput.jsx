@@ -11,7 +11,7 @@ const FormInput = ({
 	handleChange,
 	errMsg,
 }) => {
-	const { focused, handleFocus } = useGlobalContext();
+	const { focused, handleFocus, errors } = useGlobalContext();
 	return (
 		<>
 			<div className='form-control gap-y-1 justify-items-center items-center w-full max-w-[100px] lg:max-w-40 relative pt-4'>
@@ -34,11 +34,13 @@ const FormInput = ({
 					className='label text-xs uppercase font-bold tracking-[3px] self-start absolute -top-3.5 left-0 peer-invalid:text-secondary'
 					htmlFor={name}
 				>
-					{name}
+					{errors.name}
 				</label>
-				<span className='text-secondary font-normal text-[14px] italic hidden peer-invalid:block'>
-					{errMsg}
-				</span>
+				{errors && (
+					<span className='text-secondary font-normal text-[14px] italic peer-invalid'>
+						{name}
+					</span>
+				)}
 			</div>
 		</>
 	);
