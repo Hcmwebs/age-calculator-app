@@ -34,13 +34,11 @@ const FormInput = ({
 					className='label text-xs uppercase font-bold tracking-[3px] self-start absolute -top-3.5 left-0 peer-invalid:text-secondary'
 					htmlFor={name}
 				>
-					{errors.name}
+					{name}
 				</label>
-				{errors && (
-					<span className='text-secondary font-normal text-[14px] italic peer-invalid'>
-						{name}
-					</span>
-				)}
+				<span className='text-secondary font-normal text-[14px] italic hidden peer-invalid:block peer-has-[:focused = "true"]'>
+					{errMsg}
+				</span>
 			</div>
 		</>
 	);

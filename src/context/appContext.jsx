@@ -21,11 +21,14 @@ const AppContext = ({ children }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		setAge(initialAge);
-		const { data } = getFormValues(e.currentTarget);
+		const { isEmpty, data } = getFormValues(e.currentTarget);
+		if (isEmpty) {
+			console.log('Cannot be blank');
+			return;
+		}
 		setError(false);
+		setAge(initialAge);
 		setBirthDate(data);
-		setErrors(formValidation(birthDate));
 		setAge(calculateAge(birthDate));
 		e.currentTarget.reset();
 	};
