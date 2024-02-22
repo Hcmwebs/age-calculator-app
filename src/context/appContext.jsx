@@ -22,15 +22,10 @@ const AppContext = ({ children }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setAge(initialAge);
-		const { isEmpty, data } = getFormValues(e.currentTarget);
-		if (isEmpty) {
-			setError(true);
-			setErrors(formValidation(birthDate));
-			return;
-		}
-
+		const { data } = getFormValues(e.currentTarget);
 		setError(false);
 		setBirthDate(data);
+		setErrors(formValidation(birthDate));
 		setAge(calculateAge(birthDate));
 		e.currentTarget.reset();
 	};

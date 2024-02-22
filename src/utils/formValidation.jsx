@@ -5,17 +5,6 @@ const formValidation = (values) => {
 	const yearsPattern = '^(19|20)d{2,4}$';
 
 	const getDays = (year, month) => new Date(year, month, 0);
-	const isLeapYear = (year) => {
-		if (year % 4 === 0 && year % 100 != 0) {
-			return 'Leap year.';
-		}
-
-		if (values.year % 4 === 0 && values.year % 100 != 0 && year % 400 === 0) {
-			return getDays(values.year, values.month, 0);
-		} else {
-			return 'Not leap year.';
-		}
-	};
 
 	if (
 		!values.day ||
