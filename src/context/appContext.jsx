@@ -23,7 +23,7 @@ const AppContext = ({ children }) => {
 		e.preventDefault();
 		const { isEmpty, data } = getFormValues(e.currentTarget);
 		if (isEmpty) {
-			console.log('Cannot be blank');
+			setErrors(formValidation(data));
 			return;
 		}
 		setError(false);

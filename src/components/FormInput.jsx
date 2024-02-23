@@ -37,7 +37,7 @@ const FormInput = ({
 					{name}
 				</label>
 				<span className='text-secondary font-normal text-[14px] italic hidden peer-invalid:block peer-has-[:focused = "true"]'>
-					{errMsg}
+					{errors[name]}
 				</span>
 			</div>
 		</>
