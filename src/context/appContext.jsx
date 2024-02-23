@@ -21,7 +21,7 @@ const AppContext = ({ children }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const { isEmpty, data } = getFormValues(e.currentTarget);
+		const { data } = getFormValues(e.currentTarget);
 		if (data) {
 			setError(true);
 			setErrors(formValidation(data));

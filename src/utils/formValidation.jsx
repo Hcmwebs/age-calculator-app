@@ -1,29 +1,46 @@
 const formValidation = (values) => {
-	const errors = {};
+	let errors = { days: '', months: '', years: '' };
 	const daysPattern = /^(3[01]|[12][0-9]|0?[1-9])$/;
 	const monthsPattern = /^(1[0-2]|0?[1-9])$/;
 	const yearsPattern = /^(19|20)d{2,4}$/;
 
-	const getDays = (year, month) => new Date(year, month, 0);
+	const dateObj = new Date(values.year, values.day, values.month);
 
 	if (
 		!values.day ||
-		!daysPattern.test(values.day) ||
-		!getDays(values.year, values.month)
+		(!errors.days && (values.day > 31 || !daysPattern.test(values.day)))
 	) {
-		errors.day = 'Must be a valid date';
+		errors.days = 'Must be a valid date';
+	} else if (!values.day) {
 	}
-	if (!values.months || !monthsPattern.test(values.months)) {
-		errors.month = 'Must be a valid month';
+	if (
+		!values.month ||
+		(!errors.months &&
+			(values.months - 1 > 11 || !monthsPattern.test(values.months)))
+	) {
+		errors.months = 'Must be a valid month';
+	}
+	//  check for future date
+	if (
+		!values.year ||
+		(!errors.years &&
+			(values.year > new Date().getFullYear() ||
+				!yearsPattern.test(values.year)))
+	) {
+		errors.years = 'Must be a valid year';
 	}
 
-	// check if a valid year
-	if (!values.year || !yearsPattern.test(values.year)) {
-		errors.year = 'Must be a valid year';
-	} else if (values.year > new Date()) {
-		errors.year = 'Must be  in the past';
+	// check if a valid date in the past
+	if (
+		!errors.days &&
+		(dateObj.getFullYear() != values.years ||
+			dateObj.getMonth() !== values.months - 1 ||
+			dateObj.getDate() != values.days)
+	) {
+		errors.days = 'Must be a valid date';
+		errors.months = '';
+		errors.years = '';
 	}
-	// if the month is a Feb and year is a Leap year
 
 	return errors;
 };
