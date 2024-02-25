@@ -9,9 +9,9 @@ const FormInput = ({
 	max,
 	birthDate,
 	handleChange,
-	errMsg,
 }) => {
-	const { focused, handleFocus, errors } = useGlobalContext();
+	const { errors, error } = useGlobalContext();
+
 	return (
 		<>
 			<div className='form-control gap-y-1 justify-items-center items-center w-full max-w-[100px] lg:max-w-40 relative pt-4'>
@@ -24,8 +24,6 @@ const FormInput = ({
 					max={max}
 					value={birthDate.value}
 					onChange={handleChange}
-					onBlur={handleFocus}
-					focused={focused.toString()}
 					className='input input-bordered w-full rounded-lg border-base-100 bg-transparent text-black text-xl tracking-[0.2px] font-bold py-3 px-4 focus:outline-none focus:ring-[1px] focus:ring-primary invalid:ring-secondary
 					invalid:ring-1 focus:invalid:ring-secondary focus:invalid:ring-1 placeholder:uppercase
 					peer'
@@ -36,9 +34,11 @@ const FormInput = ({
 				>
 					{name}
 				</label>
-				<span className='text-secondary font-normal text-[14px] italic hidden peer-invalid:block peer-has-[:focused = "true"]'>
-					{errors[name]}
-				</span>
+				{error && (
+					<span className='text-secondary font-normal text-[14px] italic'>
+						{errors[name]}
+					</span>
+				)}
 			</div>
 		</>
 	);

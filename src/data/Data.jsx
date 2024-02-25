@@ -29,6 +29,7 @@ const inputs = [
 		type: 'number',
 		placeholder: 'yyyy',
 		max: new Date().getFullYear(),
+		maxLength: 4,
 		errMsg: 'Must be in the past',
 		pattern: '^(19|20)d{2,4}$',
 		required: true,

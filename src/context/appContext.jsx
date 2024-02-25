@@ -22,9 +22,11 @@ const AppContext = ({ children }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const { data } = getFormValues(e.currentTarget);
-		if (data) {
+		const isInvalid = formValidation(data);
+
+		if (isInvalid) {
 			setError(true);
-			setErrors(formValidation(data));
+			setErrors(isInvalid);
 			return;
 		}
 		setError(false);
