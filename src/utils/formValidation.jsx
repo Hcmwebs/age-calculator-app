@@ -1,5 +1,6 @@
 const formValidation = (values) => {
 	let errors = { day: '', month: '', year: '' };
+
 	const daysPattern = /^(3[01]|[12][0-9]|0?[1-9])$/;
 	const monthsPattern = /^(1[0-2]|0?[1-9])$/;
 	const yearsPattern = /^(19|20)d{2,4}$/;
@@ -10,16 +11,17 @@ const formValidation = (values) => {
 		!values.day ||
 		(!errors.day && (values.day > 31 || !daysPattern.test(values.day)))
 	) {
-		errors.day = 'Must be a valid date';
-	} else if (!values.day) {
+		errors.day = 'Must be a valid day';
 	}
+
 	if (
 		!values.month ||
 		(!errors.month &&
-			(values.months - 1 > 11 || !monthsPattern.test(values.months)))
+			(values.month - 1 > 11 || !monthsPattern.test(values.month - 1)))
 	) {
 		errors.month = 'Must be a valid month';
 	}
+
 	//  check for future date
 	if (
 		!values.year ||
@@ -27,20 +29,20 @@ const formValidation = (values) => {
 			(values.year > new Date().getFullYear() ||
 				!yearsPattern.test(values.year)))
 	) {
-		errors.year = 'Must be a valid year';
+		errors.year = 'Must be in the past';
 	}
 
-	// check if a valid date in the past
-	if (
-		!errors.days &&
-		(dateObj.getFullYear() != values.years ||
-			dateObj.getMonth() !== values.months - 1 ||
-			dateObj.getDate() != values.days)
-	) {
-		errors.days = 'Must be a valid date';
-		errors.months = '';
-		errors.years = '';
-	}
+	// // check if a valid date in the past
+	// if (
+	// 	!errors.day &&
+	// 	(dateObj.getFullYear() != values.years ||
+	// 		dateObj.getMonth() !== values.months - 1 ||
+	// 		dateObj.getDate() != values.days)
+	// ) {
+	// 	errors.day = 'Must be a valid date';
+	// 	errors.month = '';
+	// 	errors.year = '';
+	// }
 
 	return errors;
 };

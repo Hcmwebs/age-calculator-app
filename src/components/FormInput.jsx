@@ -7,6 +7,7 @@ const FormInput = ({
 	type,
 	min,
 	max,
+	maxLength,
 	birthDate,
 	handleChange,
 }) => {
@@ -14,7 +15,17 @@ const FormInput = ({
 
 	return (
 		<>
-			<div className='form-control gap-y-1 justify-items-center items-center w-full max-w-[100px] lg:max-w-40 relative pt-4'>
+			<div className='form-control gap-y-1 justify-items-center items-center w-full max-w-[100px] lg:max-w-40 pt-4'>
+				<label
+					className={
+						error
+							? 'label text-xs uppercase font-bold tracking-[3px] self-start text-secondary'
+							: 'label text-xs uppercase font-bold tracking-[3px] self-start '
+					}
+					htmlFor={name}
+				>
+					{name}
+				</label>
 				<input
 					type={type}
 					placeholder={placeholder}
@@ -22,20 +33,17 @@ const FormInput = ({
 					id={name}
 					min={min}
 					max={max}
+					maxLength={maxLength}
 					value={birthDate.value}
 					onChange={handleChange}
-					className='input input-bordered w-full rounded-lg border-base-100 bg-transparent text-black text-xl tracking-[0.2px] font-bold py-3 px-4 focus:outline-none focus:ring-[1px] focus:ring-primary invalid:ring-secondary
-					invalid:ring-1 focus:invalid:ring-secondary focus:invalid:ring-1 placeholder:uppercase
-					peer'
+					className={
+						error
+							? 'input input-bordered w-full rounded-lg border-base-100 bg-transparent text-xl tracking-[0.2px] font-bold py-3 px-4 ring-1 ring-secondary placeholder:uppercase'
+							: 'input input-bordered w-full rounded-lg border-base-100 bg-transparent text-black text-xl tracking-[0.2px] font-bold py-3 px-4 focus:outline-none focus:ring-1 focus:ring-primary placeholder:uppercase'
+					}
 				/>
-				<label
-					className='label text-xs uppercase font-bold tracking-[3px] self-start absolute -top-3.5 left-0 peer-invalid:text-secondary'
-					htmlFor={name}
-				>
-					{name}
-				</label>
 				{error && (
-					<span className='text-secondary font-normal text-[14px] italic'>
+					<span className='text-secondary font-normal text-[14px] italic peer-invalid:text-secondary'>
 						{errors[name]}
 					</span>
 				)}
